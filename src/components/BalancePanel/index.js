@@ -8,7 +8,6 @@ const BalancePanel = () => {
     <View style={styles.container}>
       <BalancePanelLabel />
       <BalancePanelChart />
-      <Button title="Adicionar" />
     </View>
   );
 };
