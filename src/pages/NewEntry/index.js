@@ -3,9 +3,10 @@ import {View, StyleSheet, SafeAreaView, TextInput, Button} from 'react-native';
 import BalanceLabel from '../../components/BalanceLabel';
 
 const NewEntry = ({navigation}) => {
+  const currentBalanc = 2062.45;
   return (
     <View style={styles.container}>
-      <BalanceLabel />
+      <BalanceLabel currentBalance={currentBalanc} />
       <View>
         <SafeAreaView>
           <TextInput style={styles.input} placeholder="Valor $" />
