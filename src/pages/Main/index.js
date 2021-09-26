@@ -24,7 +24,7 @@ const Main = ({navigation}) => {
     <View style={styles.container}>
       <BalancePanel currentBalance={currentBalanc} />
       <Button
-        title="Adicionar"
+        title="Adicionar "
         onPress={() => navigation.navigate('NewEntry')}
       />
       <EntrySummary entriesGrouped={entriesGrouped} />
