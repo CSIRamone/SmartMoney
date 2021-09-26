@@ -4,11 +4,14 @@ import BalanceLabel from '../../components/BalanceLabel';
 import {saveEntry} from '../../services/Entries';
 
 const NewEntry = ({navigation}) => {
-  const [entry, setEntry] = useState('0');
+  const [amount, setAmount] = useState('0.00');
 
   const save = () => {
-    //saveEntry;
-    console.log('Entry :: save ', entry);
+    const value = {
+      amount: parseFloat(amount),
+    };
+    saveEntry(value);
+    console.log('Entry :: save ', value);
   };
 
   const currentBalanc = 2062.45;
@@ -20,8 +23,8 @@ const NewEntry = ({navigation}) => {
           <TextInput
             style={styles.input}
             placeholder="Valor $"
-            onChangeText={text => setEntry(text)}
-            value={entry}
+            onChangeText={text => setAmount(text)}
+            value={amount}
           />
           <TextInput style={styles.input} placeholder="Descrição" />
           <Button title="GPS" />
