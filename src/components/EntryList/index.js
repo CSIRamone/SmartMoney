@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, Text} from 'react-native';
+import {View, StyleSheet, FlatList, Text, Button} from 'react-native';
 import {getEntries} from '../../services/Entries';
 
-const EntryList = () => {
+const EntryList = ({navigation}) => {
   const [entries, setEntries] = useState([]);
   useEffect(() => {
     const loadEntries = async () => {
@@ -20,9 +20,18 @@ const EntryList = () => {
       <FlatList
         data={entries}
         renderItem={({item}) => (
-          <Text>
-            {item.key} - {item.description} - ${item.amount}
-          </Text>
+          <View>
+            <Text>
+              {item.key} - {item.description} - ${item.amount}
+            </Text>
+            <Button
+              title={item.id}
+              onPress={entry => {
+                const entryToJSON = JSON.parse(JSON.stringify(entry));
+                navigation.navigate('NewEntry', {entry: entryToJSON});
+              }}
+            />
+          </View>
         )}
       />
     </View>

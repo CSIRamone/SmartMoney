@@ -11,7 +11,7 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Smart Money" component={Main} />
         <Stack.Screen name="NewEntry" component={NewEntry} />
         <Stack.Screen name="Report" component={Report} />
       </Stack.Navigator>

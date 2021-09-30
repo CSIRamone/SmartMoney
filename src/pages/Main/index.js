@@ -3,6 +3,7 @@ import {View, Button, StyleSheet} from 'react-native';
 import BalancePanel from '../../components/BalancePanel';
 import EntryList from '../../components/EntryList';
 import EntrySummary from '../../components/EntrySummary';
+import Colors from '../../styles/Colors';
 
 const Main = ({navigation}) => {
   const entriesGrouped = [
@@ -11,12 +12,6 @@ const Main = ({navigation}) => {
     {key: '3', description: 'Aluguel: ', amount: 120},
     {key: '4', description: 'Lazer: ', amount: 250},
     {key: '5', description: 'Outros: ', amount: 1200},
-  ];
-
-  const entries = [
-    {key: '1', description: 'Padaria ', amount: 14.0},
-    {key: '2', description: 'Mercado Giasi ', amount: 145.0},
-    {key: '3', description: 'Posto Padre Reus', amount: 230.0},
   ];
 
   const currentBalanc = 2102.55;
@@ -28,7 +23,7 @@ const Main = ({navigation}) => {
         onPress={() => navigation.navigate('NewEntry')}
       />
       <EntrySummary entriesGrouped={entriesGrouped} />
-      <EntryList entries={entries} />
+      <EntryList navigation={navigation} />
     </View>
   );
 };
@@ -37,8 +32,9 @@ export default Main;
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
-    // padding: 10,
+    flex: 1,
+    backgroundColor: Colors.background,
+    padding: 10,
     // paddingTop: 50,
   },
   label: {
