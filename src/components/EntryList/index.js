@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, Text, Button} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
 import {getEntries} from '../../services/Entries';
+import Container from '../Core/Container';
+import EntryListItem from './EntryListItem';
 
-const EntryList = ({navigation}) => {
+const EntryList = ({}) => {
   const [entries, setEntries] = useState([]);
   useEffect(() => {
     const loadEntries = async () => {
@@ -15,37 +17,29 @@ const EntryList = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Últimos Lançamentos</Text>
+    <Container
+      title="Últimos Lançamentos"
+      actionLabelText="Últimos 7 dias"
+      actionButtonText="Ver mais"
+      onPressActionButton={() => {}}>
       <FlatList
         data={entries}
-        renderItem={({item}) => (
-          <View>
-            <Text>
-              {item.key} - {item.description} - ${item.amount}
-            </Text>
-            <Button
-              title={item.id}
-              onPress={entry => {
-                const entryToJSON = JSON.parse(JSON.stringify(entry));
-                navigation.navigate('NewEntry', {entry: entryToJSON});
-              }}
-            />
-          </View>
+        keyExtractor={item => item.id}
+        renderItem={({item, index}) => (
+          <EntryListItem
+            entry={item}
+            isFirstItem={index === 0}
+            isLastItem={index === entries.length - 1}
+          />
         )}
       />
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     //flex: 1,
-    padding: 30,
-  },
-  label: {
-    fontSize: 22,
-    fontWeight: 'bold',
   },
 });
 
