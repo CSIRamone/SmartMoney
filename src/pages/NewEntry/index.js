@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, SafeAreaView, TextInput, Button} from 'react-native';
+import {View, StyleSheet, TextInput, Button} from 'react-native';
 import Colors from '../../styles/Colors';
 import BalanceLabel from '../../components/BalanceLabel';
+import NewEntryInput from './NewEntryInput';
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
+
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
     ? route.params.entry
@@ -43,17 +45,10 @@ const NewEntry = ({navigation, route}) => {
     <View style={styles.container}>
       <BalanceLabel />
       <View>
-        <SafeAreaView>
-          <TextInput
-            style={styles.input}
-            placeholder="Valor $"
-            onChangeText={text => setAmount(text)}
-            value={amount}
-          />
-          <TextInput style={styles.input} placeholder="Descrição" />
-          <Button title="GPS" />
-          <Button title="Camera" />
-        </SafeAreaView>
+        <NewEntryInput value={amount} onChangeValue={setAmount} />
+        <TextInput style={styles.input} placeholder="Descrição" />
+        <Button title="GPS" />
+        <Button title="Camera" />
         <View>
           <Button
             title="Adicionar"
@@ -75,11 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     padding: 10,
   },
-  input: {
-    borderColor: '#000',
-    borderWidth: 1,
-    padding: 10,
-  },
+  input: {},
 });
 
 export default NewEntry;
