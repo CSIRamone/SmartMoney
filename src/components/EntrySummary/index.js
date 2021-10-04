@@ -3,7 +3,7 @@ import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
 import Container from '../Core/Container';
 
-const EntrySummary = () => {
+const EntrySummary = ({onPressActionButton}) => {
   const entriesGrouped = [
     {key: '1', description: 'Alimentação: ', amount: 201},
     {key: '2', description: 'Combustível: ', amount: 12},
@@ -16,7 +16,7 @@ const EntrySummary = () => {
       title="Categorias"
       actionLabelText="Últimos 7 dias"
       actionButtonText="Ver mais"
-      onPressActionButton={() => {}}>
+      onPressActionButton={onPressActionButton}>
       <EntrySummaryChart />
       <EntrySummaryList entriesGrouped={entriesGrouped} />
     </Container>

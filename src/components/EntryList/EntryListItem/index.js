@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Svg, {Rect, Circle} from 'react-native-svg';
 import Colors from '../../../styles/Colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const EntryListItem = ({entry, isFirstItem, isLastItem}) => {
+const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletHeight = isLastItem ? 30 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
@@ -12,51 +12,56 @@ const EntryListItem = ({entry, isFirstItem, isLastItem}) => {
   return (
     // y - distanacia do teto - 0 eh o teto ||| distancia do teto - 50 eh a Base
     // height - distancia da base - 0 eh a base ||| distancia da base - 50 eh o Teto
-    <View style={styles.container}>
-      <View style={styles.bullet}>
-        <Svg height="50" width="30">
-          {showBulletLine && (
-            <Rect
-              x="10"
-              y={bulletLineY}
-              width="2"
-              height={bulletHeight}
-              fill={Colors.greenDark}
-            />
-          )}
-          <Circle
-            cx="11"
-            cy="25"
-            r={10}
-            stroke={Colors.greenDark}
-            strokeWidth="2"
-            fill={bulletColor}
-          />
-        </Svg>
-      </View>
-      <View style={styles.description}>
-        <Text style={styles.descriptionText}>{entry.description}</Text>
-
-        <View style={styles.details}>
-          <Icon style={styles.iconDetailsDate} name="history" size={17} />
-          <Text style={styles.detailsDate}>{entry.entryAt.toString()}</Text>
-
-          {entry.address && (
-            <>
-              <Icon
-                style={styles.iconDetailsLocation}
-                name="location-on"
-                size={17}
+    <TouchableOpacity
+      onPress={() => {
+        onEntryPress && onEntryPress(entry);
+      }}>
+      <View style={styles.container}>
+        <View style={styles.bullet}>
+          <Svg height="50" width="30">
+            {showBulletLine && (
+              <Rect
+                x="10"
+                y={bulletLineY}
+                width="2"
+                height={bulletHeight}
+                fill={Colors.greenDark}
               />
-              <Text style={styles.detailsLocation}>{entry.address}</Text>
-            </>
-          )}
+            )}
+            <Circle
+              cx="11"
+              cy="25"
+              r={10}
+              stroke={Colors.greenDark}
+              strokeWidth="2"
+              fill={bulletColor}
+            />
+          </Svg>
+        </View>
+        <View style={styles.description}>
+          <Text style={styles.descriptionText}>{entry.description}</Text>
+
+          <View style={styles.details}>
+            <Icon style={styles.iconDetailsDate} name="history" size={17} />
+            <Text style={styles.detailsDate}>{entry.entryAt.toString()}</Text>
+
+            {entry.address && (
+              <>
+                <Icon
+                  style={styles.iconDetailsLocation}
+                  name="location-on"
+                  size={17}
+                />
+                <Text style={styles.detailsLocation}>{entry.address}</Text>
+              </>
+            )}
+          </View>
+        </View>
+        <View style={styles.amount}>
+          <Text style={styles.amountText}>$10</Text>
         </View>
       </View>
-      <View style={styles.amount}>
-        <Text style={styles.amountText}>$10</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
