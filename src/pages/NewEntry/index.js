@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, SafeAreaView, TextInput, Button} from 'react-native';
+import Colors from '../../styles/Colors';
 import BalanceLabel from '../../components/BalanceLabel';
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
@@ -38,10 +39,9 @@ const NewEntry = ({navigation, route}) => {
     navigation.goBack();
   };
 
-  const currentBalanc = 2062.45;
   return (
     <View style={styles.container}>
-      <BalanceLabel currentBalance={currentBalanc} />
+      <BalanceLabel />
       <View>
         <SafeAreaView>
           <TextInput
@@ -71,7 +71,8 @@ const NewEntry = ({navigation, route}) => {
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
+    flex: 1,
+    backgroundColor: Colors.background,
     padding: 10,
   },
   input: {

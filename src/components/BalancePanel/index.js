@@ -10,7 +10,6 @@ import Colors from '../../styles/Colors';
 
 const BalancePanel = ({onNewEntryPress}) => {
   const currentBalance = 2064.35;
-
   return (
     <View style={styles.container}>
       <LinearGradient
