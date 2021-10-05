@@ -5,6 +5,7 @@ import BalanceLabel from '../../components/BalanceLabel';
 import NewEntryInput from './NewEntryInput';
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
+import NewEntryCategoryPicker from './NewEntryCategoryPicker';
 
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
@@ -46,7 +47,7 @@ const NewEntry = ({navigation, route}) => {
       <BalanceLabel />
       <View>
         <NewEntryInput value={amount} onChangeValue={setAmount} />
-        <TextInput style={styles.input} placeholder="Descrição" />
+        <NewEntryCategoryPicker />
         <Button title="GPS" />
         <Button title="Camera" />
         <View>

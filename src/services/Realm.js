@@ -1,7 +1,7 @@
 import Realm from 'realm';
 import CategorySchema from '../schemas/CategorySchema';
 import EntryShema from '../schemas/EntrySchema';
-import {getAllCategories} from '../services/Categories';
+import {getDefaultCategories} from '../services/Categories';
 
 export const getRealm = async () => {
   const realm = await Realm.open({
@@ -17,7 +17,7 @@ export const initDB = realm => {
   console.log(`Quantidade de categorias no DB :: iniDB : ${categoriesLength}`);
 
   if (categoriesLength === 0) {
-    const categories = getAllCategories();
+    const categories = getDefaultCategories();
 
     console.log('initDB :: initing db....');
     try {
