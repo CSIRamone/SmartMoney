@@ -10,7 +10,13 @@ const Stack = createNativeStackNavigator();
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: true,
+          cardOverlayEnabled: true,
+        }}
+        mode="modal">
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="NewEntry" component={NewEntry} />
         <Stack.Screen name="Report" component={Report} />

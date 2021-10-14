@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import {getRealm} from './Realm';
+import 'react-native-get-random-values';
 import {getUUID} from './UUID';
 
 export const getEntries = async () => {
@@ -22,6 +23,7 @@ export const saveEntry = async (value, entry = {}) => {
         amount: value.amount || entry.amount,
         entryAt: value.entryAt || entry.entryAt,
         isInit: false,
+        category: value.category || entry.category,
       };
 
       realm.create('Entry', data, true);

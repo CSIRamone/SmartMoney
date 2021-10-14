@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,7 +11,7 @@ import Colors from '../../styles/Colors';
 const BalancePanel = ({onNewEntryPress}) => {
   const currentBalance = 2064.35;
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <LinearGradient
         colors={[Colors.violet, Colors.blue]}
         style={styles.panel}>
@@ -23,7 +23,7 @@ const BalancePanel = ({onNewEntryPress}) => {
           <Icon name="add" size={30} color={Colors.white} />
         </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -6,6 +6,7 @@ import NewEntryInput from './NewEntryInput';
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
@@ -13,9 +14,12 @@ const NewEntry = ({navigation, route}) => {
     : {
         id: null,
         amount: 0.0,
-        //entryAt: new Date(),
+        category: {id: null, name: 'Selecione'},
+        entryAt: new Date(),
       };
+  const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
+  const [category, setCategory] = useState(entry.category);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -27,6 +31,7 @@ const NewEntry = ({navigation, route}) => {
   const onSave = () => {
     const data = {
       amount: parseFloat(amount),
+      category: category,
     };
     saveEntry(data, entry);
     onClose();
@@ -43,11 +48,19 @@ const NewEntry = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <BalanceLabel />
       <View>
-        <NewEntryInput value={amount} onChangeValue={setAmount} />
-        <NewEntryCategoryPicker />
+        <NewEntryInput
+          value={amount}
+          onChangeValue={setAmount}
+          onChangeDebit={setDebit}
+        />
+        <NewEntryCategoryPicker
+          debit={debit}
+          category={category}
+          onChangeCategory={setCategory}
+        />
         <Button title="GPS" />
         <Button title="Camera" />
         <View>
@@ -61,7 +74,7 @@ const NewEntry = ({navigation, route}) => {
           <Button title="Cancelar" onPress={onClose} />
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -69,7 +82,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    padding: 10,
   },
   input: {},
 });

@@ -11,7 +11,7 @@ const Container = ({
   onPressActionButton,
 }) => {
   const iconButtonPlus = (
-    <Icon name="inser-chart" style={styles.actionButtonIcon} />
+    <Icon name="insert-chart" style={styles.actionButtonIcon} />
   );
   return (
     <View style={styles.container}>

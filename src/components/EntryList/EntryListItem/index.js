@@ -8,7 +8,8 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineY = isFirstItem ? 25 : 0;
   const bulletHeight = isLastItem ? 30 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
-  const bulletColor = Colors.metalDark;
+  //const bulletColor = Colors.metalDark;
+  const bulletColor = entry.category.color || Colors.metalDark;
   return (
     // y - distanacia do teto - 0 eh o teto ||| distancia do teto - 50 eh a Base
     // height - distancia da base - 0 eh a base ||| distancia da base - 50 eh o Teto
