@@ -6,7 +6,7 @@ import NewEntryInput from './NewEntryInput';
 import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import NewEntryDatePicker from './NewEntryDatePicker';
 
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
@@ -20,6 +20,7 @@ const NewEntry = ({navigation, route}) => {
   const [debit, setDebit] = useState(entry.amount <= 0);
   const [amount, setAmount] = useState(entry.amount);
   const [category, setCategory] = useState(entry.category);
+  const [entryAt, setEntryAt] = useState(entry.entryAt);
 
   const isValid = () => {
     if (parseFloat(amount) !== 0) {
@@ -32,6 +33,7 @@ const NewEntry = ({navigation, route}) => {
     const data = {
       amount: parseFloat(amount),
       category: category,
+      entryAt: entryAt,
     };
     saveEntry(data, entry);
     onClose();
@@ -48,9 +50,9 @@ const NewEntry = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <BalanceLabel />
-      <View>
+      <View style={styles.formContainer}>
         <NewEntryInput
           value={amount}
           onChangeValue={setAmount}
@@ -61,8 +63,9 @@ const NewEntry = ({navigation, route}) => {
           category={category}
           onChangeCategory={setCategory}
         />
-        <Button title="GPS" />
-        <Button title="Camera" />
+        <View style={styles.formActionContainer}>
+          <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+        </View>
         <View>
           <Button
             title="Adicionar"
@@ -74,7 +77,7 @@ const NewEntry = ({navigation, route}) => {
           <Button title="Cancelar" onPress={onClose} />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -83,7 +86,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
   },
-  input: {},
+  formContainer: {
+    flex: 1,
+  },
+  formActionContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 70,
+  },
 });
 
 export default NewEntry;

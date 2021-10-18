@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     backgroundColor: Colors.background,
-    paddingTop: 69,
   },
   modalItem: {
     backgroundColor: Colors.asphalt,
