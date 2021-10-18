@@ -7,6 +7,7 @@ import {saveEntry} from '../../services/Entries';
 import {deleteEntry} from '../../services/Entries';
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
 import NewEntryDatePicker from './NewEntryDatePicker';
+import NewEntryDeleteAction from './NewEntryDeleteAction';
 
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
@@ -65,6 +66,7 @@ const NewEntry = ({navigation, route}) => {
         />
         <View style={styles.formActionContainer}>
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
+          <NewEntryDeleteAction entry={entry} onOkPress={onDelete} />
         </View>
         <View>
           <Button
@@ -73,7 +75,6 @@ const NewEntry = ({navigation, route}) => {
               isValid() && onSave();
             }}
           />
-          <Button title="Excluir" onPress={onDelete} />
           <Button title="Cancelar" onPress={onClose} />
         </View>
       </View>
