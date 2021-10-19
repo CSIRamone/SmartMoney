@@ -8,6 +8,10 @@ import {deleteEntry} from '../../services/Entries';
 import NewEntryCategoryPicker from './NewEntryCategoryPicker';
 import NewEntryDatePicker from './NewEntryDatePicker';
 import NewEntryDeleteAction from './NewEntryDeleteAction';
+import ActionFooter, {
+  ActionPrimaryButton,
+  ActionSecondaryButton,
+} from '../../components/Core/ActionFooter';
 
 const NewEntry = ({navigation, route}) => {
   const entry = route.params?.entry
@@ -68,16 +72,16 @@ const NewEntry = ({navigation, route}) => {
           <NewEntryDatePicker value={entryAt} onChange={setEntryAt} />
           <NewEntryDeleteAction entry={entry} onOkPress={onDelete} />
         </View>
-        <View>
-          <Button
-            title="Adicionar"
-            onPress={() => {
-              isValid() && onSave();
-            }}
-          />
-          <Button title="Cancelar" onPress={onClose} />
-        </View>
       </View>
+      <ActionFooter>
+        <ActionPrimaryButton
+          title={entry.id ? 'Salvar' : 'Adicionar'}
+          onPress={() => {
+            isValid() && onSave();
+          }}
+        />
+        <ActionSecondaryButton title="Cancelar" onPress={onClose} />
+      </ActionFooter>
     </View>
   );
 };
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
   formActionContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: 70,
+    //marginBottom: 70,
   },
 });
 

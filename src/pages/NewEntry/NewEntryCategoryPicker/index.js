@@ -9,6 +9,10 @@ import {
   Alert,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ActionFooter, {
+  ActionPrimaryButton,
+  ActionSecondaryButton,
+} from '../../../components/Core/ActionFooter';
 
 import {
   getDebitCategories,
@@ -30,7 +34,7 @@ const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
 
     loadCategories();
     console.log('NewEntryCategoryPicker :: useEffect');
-   // console.log(`LoadCategories :: ${JSON.stringify(debitCategories)}`);
+    // console.log(`LoadCategories :: ${JSON.stringify(debitCategories)}`);
     //console.log(`LoadCategories :: ${JSON.stringify(creditCategories)}`);
   }, []);
 
@@ -70,12 +74,10 @@ const NewEntryCategoryPicker = ({debit, category, onChangeCategory}) => {
                 </TouchableOpacity>
               )}
             />
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={onClosePressModal}>
-              <Text style={styles.closeButtonText}>Fechar</Text>
-            </TouchableOpacity>
           </View>
+          <ActionFooter>
+            <ActionPrimaryButton title="Fechar" onPress={onClosePressModal} />
+          </ActionFooter>
         </Modal>
       </SafeAreaView>
     </View>
@@ -88,13 +90,14 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     backgroundColor: Colors.background,
+    padding: 28,
   },
   modalItem: {
     backgroundColor: Colors.asphalt,
-    padding: 20,
+    padding: 15,
     borderRadius: 15,
-    marginVertical: 10,
-    marginHorizontal: 20,
+    marginVertical: 11,
+    marginHorizontal: 30,
   },
   modalItemText: {
     fontSize: 22,
@@ -103,31 +106,14 @@ const styles = StyleSheet.create({
   },
   pickerButton: {
     backgroundColor: Colors.asphalt,
-    padding: 20,
+    padding: 15,
     borderRadius: 15,
-    marginVertical: 10,
-    marginHorizontal: 20,
+    marginVertical: 11,
+    marginHorizontal: 30,
   },
   pickerButtonText: {
     fontSize: 28,
     textAlign: 'center',
     color: Colors.white,
-  },
-  closeButton: {
-    backgroundColor: Colors.background,
-    paddingVertical: 3,
-    paddingHorizontal: 5,
-    borderWidth: 1,
-    borderColor: Colors.green,
-    borderRadius: 15,
-    marginVertical: 10,
-    marginHorizontal: 20,
-    marginBottom: 40,
-    alignSelf: 'center',
-  },
-  closeButtonText: {
-    fontSize: 14,
-    color: Colors.green,
-    textAlign: 'center',
   },
 });
