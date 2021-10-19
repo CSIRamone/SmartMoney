@@ -1,51 +1,42 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import BalanceLabel from '../../components/BalanceLabel';
 import EntryList from '../../components/EntryList';
 import EntrySummary from '../../components/EntrySummary';
+import Colors from '../../styles/Colors';
+import ActionFooter, {
+  ActionPrimaryButton,
+} from '../../components/Core/ActionFooter';
 
-const Report = () => {
-  const currentBalanc = 2062.45;
-  const entriesGrouped = [
-    {key: '1', description: 'Alimentação: ', amount: 201},
-    {key: '2', description: 'Combustível: ', amount: 12},
-    {key: '3', description: 'Aluguel: ', amount: 120},
-    {key: '4', description: 'Lazer: ', amount: 250},
-    {key: '5', description: 'Outros: ', amount: 1200},
-  ];
-
-  const entries = [
-    {key: '1', description: 'Padaria ', amount: 14.0},
-    {key: '2', description: 'Mercado Giasi ', amount: 145.0},
-    {key: '3', description: 'Posto Padre Reus', amount: 230.0},
-  ];
-
+const Report = ({navigation}) => {
+  const onClose = () => {
+    return navigation.goBack();
+  };
   return (
     <View style={styles.container}>
-      <Text>Report</Text>
-      <BalanceLabel currentBalance={currentBalanc} />
+      <BalanceLabel />
       <View>
         <Picker>
           <Picker.Item label="Todas Categorias" />
           <Picker.Item label="ültimos 7 dias" />
         </Picker>
       </View>
-      <EntrySummary entriesGrouped={entriesGrouped} />
-      <EntryList entries={entries} />
-      <View>
-        <Button title="Salvar" />
-        <Button title="Fechar" />
-      </View>
+      <ScrollView>
+        <EntrySummary />
+        <EntryList />
+      </ScrollView>
+      <ActionFooter>
+        <ActionPrimaryButton title="Fechar" onPress={onClose} />
+      </ActionFooter>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
-    padding: 20,
-    paddingTop: 50,
+    flex: 1,
+    backgroundColor: Colors.background,
   },
 });
 
