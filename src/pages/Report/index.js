@@ -53,7 +53,7 @@ const Report = ({navigation}) => {
         <RelativeDaysModal
           isVisible={relativeDaysModalVisible}
           onConfirm={onRelativeDaysPress}
-          onClose={onRelativeDaysClosePress}
+          onCancel={onRelativeDaysClosePress}
         />
       </View>
       <ScrollView>
