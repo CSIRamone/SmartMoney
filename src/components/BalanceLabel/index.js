@@ -1,18 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import useBalance from '../../hooks/useBalance';
 import Colors from '../../styles/Colors';
 
 const BalanceLabel = () => {
-  const currentBalanc = 2062.45;
+  const [balance] = useBalance();
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.label}>Saldo Atual</Text>
       <LinearGradient
         style={styles.panel}
         colors={[Colors.violet, Colors.blue]}>
-        <Text style={styles.value}>{currentBalanc}</Text>
+        <Text style={styles.value}>{balance}</Text>
       </LinearGradient>
     </SafeAreaView>
   );

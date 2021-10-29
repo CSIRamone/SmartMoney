@@ -11,10 +11,12 @@ export const getEntries = async (days, category) => {
 
   if (days > 0) {
     const date = moment().subtract(days, 'days').toDate();
+    console.log('getEntries :: days ', JSON.stringify(days));
     realm = realm.filtered('entryAt >= $0', date);
   }
 
   if (category && category.id) {
+    console.log('getEntries :: category ', JSON.stringify(category));
     realm = realm.filtered('category $0', category);
   }
 

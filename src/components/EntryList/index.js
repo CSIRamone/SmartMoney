@@ -1,20 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
-import {getEntries} from '../../services/Entries';
+import useEntries from '../../hooks/useEntries';
 import Container from '../Core/Container';
 import EntryListItem from './EntryListItem';
 
-const EntryList = ({days = 7, onEntryPress, onPressActionButton}) => {
-  const [entries, setEntries] = useState([]);
-  useEffect(() => {
-    const loadEntries = async () => {
-      const data = await getEntries(days);
-      setEntries(data);
-    };
-
-    loadEntries();
-    console.log('EntryList :: useEffect');
-  }, [days]);
+const EntryList = ({days = 7, category, onEntryPress, onPressActionButton}) => {
+  const [entries] = useEntries(days, category);
 
   return (
     <Container
