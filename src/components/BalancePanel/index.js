@@ -31,7 +31,9 @@ const BalancePanel = ({onNewEntryPress}) => {
 export default BalancePanel;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    marginBottom: -23,
+  },
   panel: {},
   button: {
     backgroundColor: Colors.green,
